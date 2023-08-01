@@ -1,4 +1,5 @@
 import React from "react";
+import DiaryItem from "./DiaryItem";
 
 const DiaryList = ({ diaryList }) => {
   return (
@@ -7,15 +8,15 @@ const DiaryList = ({ diaryList }) => {
       <p>{diaryList.length}개의 일기가 있습니다.</p>
       <div className="list">
         {diaryList.map((it) => (
-          <div className="list_inner">
-            <div className="list_author">작성자 : {it.author}</div>
-            <div className="list_content">{it.content}</div>
-            <div className="list_emotion">{it.emotion}</div>
-          </div>
+          <DiaryItem key={it.id} {...it} />
         ))}
       </div>
     </div>
   );
+};
+
+DiaryList.defaultProps = {
+  diaryList: [],
 };
 
 export default DiaryList;
