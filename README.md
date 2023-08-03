@@ -1,8 +1,8 @@
-# React + Vite
+# react 감정일기장
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 설명
+  내 감정을 1에서 5까지 표시하고 제목과 게시글을 작성하여 리스트 형식으로 한눈에 볼 수 있는 일기장
+  
+- 기능
+  작성시 리스트 추가 기능
+  
