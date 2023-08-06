@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({ onCreate }) => {
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -10,6 +10,7 @@ const DiaryEditor = () => {
     emotion: 1,
   });
 
+  // 데이터 입력
   const handleChangeState = (e) => {
     setState({
       ...state,
@@ -17,25 +18,33 @@ const DiaryEditor = () => {
     });
   };
 
+  // 저장버튼
   const handleSubmit = () => {
     if (state.author.length < 1) {
       authorInput.current.focus();
+      alert("제목을 1자 이상 입력해주세요.");
       return;
     }
-
     if (state.content.length < 5) {
       contentInput.current.focus();
+      alert("내용을 5자 이상 입력해주세요.");
       return;
     }
     console.log(state);
-    alert("저장 성공");
+    onCreate(state.author, state.content, state.emotion);
+    alert("저장 되었습니다.");
+    state.author = "";
+    state.content = "";
+    state.emotion = "";
   };
 
   return (
     <div className="DiaryEditor">
       <h2>오늘의 일기</h2>
       <div className="title">
+        <div className="lbl">제목</div>
         <input
+          placeholder="제목을 1자 이상 입력해주세요."
           ref={authorInput}
           name="author"
           value={state.author}
@@ -43,7 +52,9 @@ const DiaryEditor = () => {
         />
       </div>
       <div className="content">
+        <div className="lbl">내용</div>
         <textarea
+          placeholder="내용을 5자 이상 입력해주세요."
           ref={contentInput}
           name="content"
           value={state.content}
@@ -51,6 +62,7 @@ const DiaryEditor = () => {
         />
       </div>
       <div className="selectBox">
+        <div className="lbl">내 감정 점수</div>
         <select
           name="emotion"
           value={state.emotion}

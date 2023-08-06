@@ -61,6 +61,7 @@ em,address {
 a {
     color: inherit;
     text-decoration: none;
+    font-family: 'Pretendard-Regular';
 }
 strong {
     font-weight: 700;
@@ -77,5 +78,10 @@ b {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: auto !important;
+    box-sizing: border-box;
+}
+button {
+    font-family: 'Pretendard-Regular';
+    cursor: pointer;
     box-sizing: border-box;
 }
