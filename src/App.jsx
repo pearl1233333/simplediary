@@ -37,7 +37,7 @@ const App = () => {
     setDate([...data, newItem]);
   };
 
-  const onDelete = (targetId) => {
+  const onRemove = (targetId) => {
     const newDailyList = data.filter((it) => it.id != targetId);
     setDate(newDailyList);
   };
@@ -45,7 +45,7 @@ const App = () => {
   return (
     <div className="wrapper">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList onDelete={onDelete} diaryList={data} />
+      <DiaryList onRemove={onRemove} diaryList={data} />
     </div>
   );
 };

@@ -176,17 +176,30 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.btn_delete {
+
+.item__btn {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+.item__btn button {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 70px;
   height: 35px;
-  margin-top: 20px;
-  background-color: rgb(0, 153, 255);
+  border: 1px solid #0099ff;
   border-radius: 5px;
   font-size: 14px;
+}
+.btn_type--1 {
+  margin-right: 7px;
+  background-color: #0099ff;
   color: #fff;
+}
+.btn_type--2 {
+  background-color: #fff;
+  color: #0099ff;
 }
 @media (max-width: 500px) {
   .DiaryList {
