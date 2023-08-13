@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const DiaryItem = ({
+  onEdit,
   onRemove,
   author,
   content,
@@ -12,6 +13,7 @@ const DiaryItem = ({
   const tiggleIsEdit = () => setEdit(!isEdit);
 
   const [localContent, setLocalContent] = useState(content);
+  const localContentInput = useRef();
 
   const handleRemove = () => {
     if (window.confirm(`${id + 1}번째 일기를 삭제하시겠습니까?`)) {
@@ -24,12 +26,16 @@ const DiaryItem = ({
     setLocalContent(content);
   };
 
-  const onEdit = (targetId, newContent) => {
-    setData(
-      data.map((it) =>
-        it.id === targetId ? { ...it, content: newContent } : it
-      )
-    );
+  const handleEdit = () => {
+    if (localContent.length < 5) {
+      localContentInput.current.focus();
+      return;
+    }
+
+    if (window.confirm(`${id + 1}번째 일기를 수정하시겠습니까?`)) {
+      onEdit(id, localContent);
+      tiggleIsEdit();
+    }
   };
 
   return (
@@ -60,7 +66,7 @@ const DiaryItem = ({
             <button className="btn_type--1" onClick={handleQuitEdit}>
               취소
             </button>
-            <button className="btn_type--2" onClick={() => {}}>
+            <button className="btn_type--2" onClick={handleEdit}>
               저장
             </button>
           </>

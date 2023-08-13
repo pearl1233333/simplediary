@@ -20,7 +20,7 @@ import DiaryList from "./components/DiaryList";
 // ];
 
 const App = () => {
-  const [data, setDate] = useState([]);
+  const [data, setData] = useState([]);
   const dataId = useRef(0);
 
   // 데이터 추가
@@ -34,18 +34,26 @@ const App = () => {
       id: dataId.current,
     };
     dataId.current += 1;
-    setDate([...data, newItem]);
+    setData([...data, newItem]);
   };
 
   const onRemove = (targetId) => {
     const newDailyList = data.filter((it) => it.id != targetId);
-    setDate(newDailyList);
+    setData(newDailyList);
+  };
+
+  const onEdit = (targetId, newContent) => {
+    setData(
+      data.map((it) =>
+        it.id === targetId ? { ...it, content: newContent } : it
+      )
+    );
   };
 
   return (
     <div className="wrapper">
       <DiaryEditor onCreate={onCreate} />
-      <DiaryList onRemove={onRemove} diaryList={data} />
+      <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>
   );
 };
