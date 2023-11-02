@@ -63,11 +63,11 @@ const DiaryItem = ({
       <div className="item__btn">
         {isEdit ? (
           <>
-            <button className="btn_type--1" onClick={handleQuitEdit}>
-              취소
-            </button>
-            <button className="btn_type--2" onClick={handleEdit}>
+            <button className="btn_type--1" onClick={handleEdit}>
               저장
+            </button>
+            <button className="btn_type--2" onClick={handleQuitEdit}>
+              취소
             </button>
           </>
         ) : (
