@@ -5,7 +5,7 @@
 }
 body {
   width: 100%;
-  background-color: aliceblue;
+  background-color: #F3AD53;
 }
 .wrapper {
   max-width: 500px;
@@ -41,7 +41,7 @@ body {
   height: 45px;
   padding: 0 10px;
   border: none;
-  background-color: rgb(237, 247, 255);
+  background-color: #fff2df;
   border-radius: 4px;
   font-family: 'Pretendard-Regular';
   font-size: 16px;
@@ -54,7 +54,7 @@ body {
   width: 100%;
   height: 200px;
   padding: 10px;
-  background-color: #edf7ff;
+  background-color: #fff2df;
   border-radius: 4px;
   font-family: 'Pretendard-Regular';
   font-size: 16px;
@@ -79,7 +79,7 @@ body {
   padding: 0 5px;
   border: 1px solid #4f4f4f;
   border-radius: 5px;
-  background-color: #edf7ff;
+  background-color: #fff;
   box-sizing: border-box;
 }
 .selectBox select:focus {
@@ -99,7 +99,7 @@ body {
   width: 150px;
   height: 45px;
   margin: 30px auto 0;
-  background-color: rgb(0, 153, 255);
+  background-color: #F3775B;
   border-radius: 7px;
   font-size: 16px;
   font-weight: bold;
@@ -109,9 +109,21 @@ body {
   box-sizing: border-box;
 }
 
+/* --------------------
+        일기 개수
+-----------------------*/
+.emotion_score {
+  width: 100%;
+  padding: 30px 30px;
+  margin: 0 auto;
+  margin-top: 30px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
 
 /* --------------------
-       일기 리스트 
+        일기 리스트 
 -----------------------*/
 .DiaryList {
   width: 100%;
@@ -136,27 +148,31 @@ body {
   margin-bottom: 20px;
   border-radius: 10px;
   background-color: #fff;
-  box-shadow: 1px 1px 12px 0px rgb(0 0 0 / 8%);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.05), 0px 0px 14px 6px rgba(0, 0, 0, 0.03);
   box-sizing: border-box;
 }
 .item__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 .item__num {
 
 }
 .item__date {
   margin-left: 5px;
+  font-size: 14px;
   font-weight: 300;
   color: #a5a5a5;
   white-space: nowrap;
 }
 .item__bottom {
-  padding-top: 15px;
+  padding-top: 12px;
   border-top: 2px dashed #d6d6d6;
+}
+.item__bottom p {
+  font-size: 14px;
 }
 .item__author {
   margin-bottom: 5px;
@@ -198,18 +214,18 @@ body {
   justify-content: center;
   width: 70px;
   height: 35px;
-  border: 1px solid #0099ff;
+  border: 1px solid #F3775B;
   border-radius: 5px;
   font-size: 14px;
 }
 .btn_type--1 {
   margin-right: 7px;
-  background-color: #0099ff;
+  background-color: #F3775B;
   color: #fff;
 }
 .btn_type--2 {
   background-color: #fff;
-  color: #0099ff;
+  color: #F3775B;
 }
 @media (max-width: 500px) {
   .DiaryList {
