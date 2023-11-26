@@ -1,44 +1,69 @@
-import { useCallback, useMemo, useState, useRef } from "react";
+import { useCallback, useMemo, useRef, useReducer } from "react";
 import DiaryEditor from "./components/DiaryEditor";
 import DiaryList from "./components/DiaryList";
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'CREATE': {
+      const created_date = new Date().getTime();
+      const newItem = {
+        ...action.data,
+        created_date
+      }
+      return [newItem, ...state];
+    }
+    case 'REMOVE': {
+      return state.filter((it) => it.id !== action.targetId);
+    }
+    case 'EDIT': {
+      return state.map((it) =>
+        it.id === action.targetId ?
+          { ...it, content: action.newContent } : it
+      )
+    }
+    default:
+    return state;
+  }
+}
+
 const App = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
+  const [data, dispatch] = useReducer(reducer,[]);
+
   const dataId = useRef(0);
 
   // 데이터 추가
   const onCreate = useCallback(
     (author, content, emotion) => {
-      const created_date = new Date().getTime();
-      const newItem = {
-        author,
-        content,
-        emotion,
-        created_date,
-        id: dataId.current,
-      };
+      dispatch({
+        type: "CREATE",
+        data: { author, content, emotion, id: dataId.current }
+      });
       dataId.current += 1;
-      setData([...data, newItem]);
     },
     []
   );
 
   const onRemove = useCallback((targetId) => {
-    setData(data => data.filter((it) => it.id != targetId));
+    dispatch({
+      type: "REMOVE",
+      targetId
+    });
   },[]);
 
   const onEdit = useCallback((targetId, newContent) => {
-    setData((data) =>
-      data.map((it) =>
-        it.id === targetId ? { ...it, content: newContent } : it
-      )
-    );
+    dispatch({
+      type: "EDIT",
+      targetId,
+      newContent
+    });
   },[]);
 
   const getDariyAnalysis = useMemo(() => {
     const goodCount = data.filter((it) => it.emotion >= 3).length;
     const badCount = data.length - goodCount;
-    const goodRatio = (goodCount / data.length) * 100;
+    const goodRatio = data.length > 0 ?
+      (goodCount / data.length * 100).toFixed(1) : '-';
     return {goodCount, badCount, goodRatio};
   }, [data.length]);
 
@@ -51,7 +76,7 @@ const App = () => {
         <div>전체일기 : {data.length}개</div>
         <div>기분 좋은 일기 개수 : {goodCount}개</div>
         <div>기분 나쁜 일기 개수 : {badCount}개</div>
-        <div>기분 좋은 일기 비율 : {goodRatio}</div>
+        <div>기분 좋은 일기 비율 : {goodRatio}%</div>
       </div>
       <DiaryList onEdit={onEdit} onRemove={onRemove} diaryList={data} />
     </div>

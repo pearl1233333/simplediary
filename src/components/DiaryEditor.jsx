@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-const DiaryEditor = ({ onCreate }) => {
+const DiaryEditor = React.memo(({ onCreate }) => {
 
   const authorInput = useRef();
   const contentInput = useRef();
@@ -34,9 +34,11 @@ const DiaryEditor = ({ onCreate }) => {
     // console.log(state);
     onCreate(state.author, state.content, state.emotion);
     alert("저장 되었습니다.");
-    state.author = "";
-    state.content = "";
-    state.emotion = "";
+    setState({
+      author: "",
+      content: "",
+      emotion: 1
+    });
   };
 
   return (
@@ -83,5 +85,5 @@ const DiaryEditor = ({ onCreate }) => {
       </div>
     </div>
   );
-};
+});
 export default React.memo(DiaryEditor);
