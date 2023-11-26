@@ -1,6 +1,7 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const DiaryEditor = ({ onCreate }) => {
+
   const authorInput = useRef();
   const contentInput = useRef();
 
@@ -30,7 +31,7 @@ const DiaryEditor = ({ onCreate }) => {
       alert("내용을 5자 이상 입력해주세요.");
       return;
     }
-    console.log(state);
+    // console.log(state);
     onCreate(state.author, state.content, state.emotion);
     alert("저장 되었습니다.");
     state.author = "";
@@ -83,4 +84,4 @@ const DiaryEditor = ({ onCreate }) => {
     </div>
   );
 };
-export default DiaryEditor;
+export default React.memo(DiaryEditor);
