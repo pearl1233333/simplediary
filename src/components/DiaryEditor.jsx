@@ -1,6 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
+import { DiaryDispatchContext } from "../App";
 
-const DiaryEditor = React.memo(({ onCreate }) => {
+const DiaryEditor = () => {
+
+  const { onCreate } = useContext(DiaryDispatchContext);
 
   const authorInput = useRef();
   const contentInput = useRef();
@@ -31,7 +34,7 @@ const DiaryEditor = React.memo(({ onCreate }) => {
       alert("내용을 5자 이상 입력해주세요.");
       return;
     }
-    // console.log(state);
+    
     onCreate(state.author, state.content, state.emotion);
     alert("저장 되었습니다.");
     setState({
@@ -85,5 +88,5 @@ const DiaryEditor = React.memo(({ onCreate }) => {
       </div>
     </div>
   );
-});
-export default React.memo(DiaryEditor);
+};
+export default memo(DiaryEditor);
